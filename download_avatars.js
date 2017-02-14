@@ -1,5 +1,7 @@
 var request = require('request');
 var fs = require('fs');
+var repo = process.argv[3];
+var owner = process.argv[2];
 
 const GITHUB_USER = "anandg112";
 const GITHUB_TOKEN = "5b9a10c8f21730e6c7b61d335023341ae27ce327";
@@ -24,7 +26,7 @@ function downloadImageByURL(url, filePath) {
       .pipe(fs.createWriteStream(filePath))
 }
 
-getRepoContributors("jquery", "jquery", function(err, result, body) {
+getRepoContributors(owner, repo, function(err, result, body) {
   // console.log("Errors:", err);
   // console.log("Result:", result);
   var parseObj = JSON.parse(body);
