@@ -7,11 +7,34 @@ console.log("Welcome to the GitHub Avatar Downloader!");
 
 function getRepoContributors(repoOwner, repoName, cb) {
 //GET /repos/:owner/:repo/contributors
-var requestURL = "https://" + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
-console.log(requestURL);
+  var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
+  //console.log(requestURL);
+  var options = {
+            url: requestURL,
+            headers: {'User-Agent': 'GitHub Avatar Downloader - Student Project'}
+  };
+
+  request(options, cb);
+
+
+
+
+
+
+
+  //console.log(options);
+
 }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
-});
+getRepoContributors("jquery", "jquery", function(err, result, body) {
+  // console.log("Errors:", err);
+  // console.log("Result:", result);
+  var parseObj = JSON.parse(body);
+  // console.log(parseObj);
+  var avatarURL = [];
+  parseObj.forEach(function(element){
+    avatarURL.push(element.avatar_url);
+  });
+  console.log(avatarURL);
+}
+)
