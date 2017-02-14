@@ -31,7 +31,7 @@ function downloadImageByURL(url, filePath) {
 }
 
 getRepoContributors(owner, repo, function(err, result, body) {
-  var parseObj = JSON.parse(body); //parsing the body
+  var parseObj = JSON.parse(body); //parsing the body into JSON
   var avatarURL = []; //Array of Avatar URLs
   parseObj.forEach(function(element){
     avatarURL.push(element.avatar_url); //pushing Avatar Urls to array
