@@ -10,14 +10,17 @@ console.log("Welcome to the GitHub Avatar Downloader!");
 
 function getRepoContributors(repoOwner, repoName, cb) {
 //GET /repos/:owner/:repo/contributors
-  var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
+  if(repoOwner != null && repoName != null){
+    var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
   //console.log(requestURL);
-  var options = {
+    var options = {
             url: requestURL,
             headers: {'User-Agent': 'GitHub Avatar Downloader - Student Project'}
-  };
-
-  request(options, cb);
+          };
+    request(options, cb);
+} else {
+  console.log("You didn't provide 2 parameters. Please specify repo owner and repo.")
+  }
 
 }
 
